@@ -220,6 +220,7 @@ ip addr show // the (host machine ip addr show) has a docker bridge that forward
 ####. A Dockerfile is a set of instructions written as a shell script for creating a Docker image. Below is an example Dockerfile that creates a Redis image on a Ubuntu layer.
 Dokcerfile
 ------
+```
 ############################################################
 # Dockerfile to build Redis container images
 # Based on Ubuntu
@@ -248,11 +249,13 @@ ENTRYPOINT  ["redis-server"]
 RUN echo 'Redis-server running at port 6379'
 
 CMD 'echo' 'Redis container is instantiated.'
+```
 ------
 There are some special things in this Dockerfile. FROM tells Docker which image to start from. As you can see, we are starting with Ubuntu. RUN simply runs a shell command. EXPOSE opens up a port to be publically accessible. 6379 is the standard Redis port. ENTRYPOINT designates the command or application to be run when a container is created. In this case whenever a container is created from our image, redis-server will be run.
 
 #### Dockerfile example for bulding a MongoDB image
 ------
+```
 ############################################################
 # Dockerfile to build MongoDB container images
 # Based on Ubuntu
@@ -296,7 +299,7 @@ CMD ["--port 27017"]
 
 # Set default container command
 ENTRYPOINT usr/bin/mongod
-
+```
 ------
 ### 20. Build an image from Dockerfile
 #### Build an image using the Dockerfile at current location. The -t [name] flag here is used to tag the image. To learn more about what else you can do during build, run sudo docker build --help. When a Dockerfile is finished executing, you end up having formed an image, which then you use to start (i.e. create) a new container.
