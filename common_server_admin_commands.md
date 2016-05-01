@@ -196,7 +196,7 @@ $ nslookup -type=ns google.com // query name server
 $ nslookup -type=any google.com // query DNS record
 $ nslookup -type=soa google.com // query start of authority
 
-###16. dg
+###16. dig
 ####dig is a tool for querying DNS nameservers for information about host addresses, mail exchanges, nameservers, and related information. This tool can be used from any Linux (Unix) or Macintosh OS X operating system. The most typical use of dig is to simply query a single host.
 
 dig google.com
