@@ -113,6 +113,14 @@ docker run --name juns-ubuntu -it ubuntu:14.04 bash    // the container will be 
 
 docker run -it --name duck -d ubuntu /bin/bash // strat a container with name "duck", -d means in "detach mode"
 
+
+# OSX/Windows users will want to remove --­­user "$(id -­u):$(id -­g)"
+docker run -it --rm --user "$(id -u):$(id -g)" \
+  -v "$PWD":/usr/src/app -w /usr/src/app rails:4 rails new --skip-bundle dummy
+The -v "$PWD":/usr/src/app -w /usr/src/app segment connects our local working directory with the /usr/src/app path within the Docker image. This is what allows the container to write the Rails scaffolding to our work station.
+
+
+
 ### 8. Install software on your container. Ubuntu image is very light-weight, a bare-boned image. An important strategy of creating Docker images is keeping them as light as possible. Let's install wget:
 apt-get update
 apt-get install wget
@@ -322,7 +330,23 @@ CTRL + P + Q
 
 docker attach my_first_mdb_instance
 
+###21. Remove Dangling/Orphaned Docker Volumes
+$ docker volume ls -qf dangling=true
 
+Eliminate all of them with
+
+$ docker volume rm $(docker volume ls -qf dangling=true)
+
+### 22. Run Bash Commands with Docker Container
+
+$ docker run --rm -v $PWD:$PWD -w $PWD -u=$(id -u) <container name> bash -c 'whoami'
+
+
+### 23. Default jekyll server volume :/srv/jekyll
+
+docker run --rm --label=jekyll --volume=$(pwd):/srv/jekyll -it -p 127.0.0.1:4000:4000 jekyll/jekyll
+
+docker run --rm --label=jekyll --volume=$(pwd):/srv/jekyll -it -p 127.0.0.1:4000:4000 jekyll/jekyll
 
 
 

@@ -3,6 +3,12 @@
 
 ## Basic Commands
 
+- list all users accounts in the terminal
+
+dscacheutil -q user | grep -A 3 -B 2 -e uid:\ 5'[0-9][0-9]'
+
+dscl . list /Users | grep -v '^_'
+
 - cd
     - cd -
     - cd ~
